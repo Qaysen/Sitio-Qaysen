@@ -1,0 +1,28 @@
+<html>
+<head>
+	<title>Contactanos</title>
+</head>
+<body>
+	<form  method="POST">
+		{% csrf_token %}
+		<div>
+			<label>Nombre:</label>
+			<input type='text' name='nombre'>
+			{{ formulario.nombre.errors }}
+		</div>
+		<div>
+			<label>Email:</label>
+			<input type='email' name='e_mail'>
+			{{ formulario.e_mail.errors }}
+		</div>
+		<div>
+			<label>Descripcion:</label>
+			<input type='text' name='descripcion' >
+			{{ formulario.descripcion.errors }}
+		</div>
+		<div>
+			<input type= 'submit' value= 'Enviar'>
+		</div>
+	</form>
+</body>
+</html>

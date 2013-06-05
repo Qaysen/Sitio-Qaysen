@@ -15,6 +15,6 @@ urlpatterns = patterns('',
 
     # url(r'^equipo/$', 'principal.views.equipo'),
 
-    # url(r'^contactanos/$', 'principal.views.contacto'),
+    url(r'^contactanos/$', 'principal.views.contacto'),
 
    )
