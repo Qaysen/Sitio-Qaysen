@@ -48,11 +48,11 @@ MEDIA_URL = 'http://localhost:8000/media/'
 # Aqui deberia ir vacio.
 STATIC_ROOT = ''
 
-STATIC_URL = '/estatico/'
+STATIC_URL = '/static/'
 
 # Agregamos el nombre de la carpeta estatico.
 STATICFILES_DIRS = (
-    RUTA_PROYECTO.child("estatico"),  # ruta de archivos estaticos css y js
+    RUTA_PROYECTO.child("static"),  # ruta de archivos estaticos css y js
 )
 
 STATICFILES_FINDERS = (

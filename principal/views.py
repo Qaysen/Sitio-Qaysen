@@ -22,3 +22,9 @@ def contacto(request):
 	else:
 		formulario=ContactoForm()
 	return render_to_response('contacto.html', {'formulario':formulario},context_instance=RequestContext(request))
+
+
+def nosotros(request):
+	nosotros=Nosotros.objects.all()
+	equipo=Equipo.objects.all().order_by('?')
+	return render_to_response('nosotros.html', {'nosotros':nosotros,'equipo':equipo},context_instance=RequestContext(request))
