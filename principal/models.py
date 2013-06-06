@@ -75,7 +75,7 @@ GENERO = (
 )
 
 class Equipo(models.Model):
-	usuario = models.ForeignKey(User)	
+	usuario = models.ForeignKey(MyUser)	
 	descripcion = models.CharField(max_length=500)
 	cargo=models.CharField(max_length=20)
 	img=models.FileField(upload_to='fotoCarnet/')
@@ -135,7 +135,8 @@ class Cliente(models.Model):
 	telefono= models.CharField(null=True,blank=True,max_length=10)
 	razonSocial = models.CharField(max_length=100)
 	logo=models.FileField(upload_to='logoCliente/')
-	
+	link_web    = models.CharField(null=True,blank=True,max_length=100)
+	descripcion = models.TextField()
 
 	def __unicode__(self):
 		return self.nombre
