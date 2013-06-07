@@ -1,0 +1,22 @@
+<html>
+<head>
+	<title>Servicios</title>
+</head>
+<body>
+
+	    <div>
+      		<h1>{{servicio.nombre}}</h1>
+      		<p>Descripcion: {{servicio.descripcion}}</p>
+      		Planes q tenemos para tí:
+      		{% for plan in planes %}										
+				
+				<h4>{{plan.nombre}}</h4>
+		      	<h4>Precio: {{plan.precio}}	</h4>
+		      	<h4>Descripcion: {{plan.caracteristicas}}</h4>
+		    		
+			{% endfor %}
+
+      </div>
+      <a href="/contactanos">Contáctenos</a>
+</body>
+</html>

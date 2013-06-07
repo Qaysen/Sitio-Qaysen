@@ -26,7 +26,6 @@ class MyUser(AbstractBaseUser):
 	usuarios = (
 		('Administrador','Administrador'),
 		('Equipo','Equipo'),
-		('Cliente','Cliente'),
 	)
 	username = models.CharField(max_length=200 , unique=True)
 	email = models.EmailField(db_index=True)
@@ -75,7 +74,7 @@ GENERO = (
 )
 
 class Equipo(models.Model):
-	usuario = models.ForeignKey(User)	
+	usuario = models.ForeignKey(MyUser)	
 	descripcion = models.CharField(max_length=500)
 	cargo=models.CharField(max_length=20)
 	img=models.FileField(upload_to='fotoCarnet/')
@@ -140,18 +139,34 @@ class Cliente(models.Model):
 	def __unicode__(self):
 		return self.nombre
 
-class Servicios(models.Model):
+TIPO = (
+	('Conplan','Conplan'),
+	('Sinplan','Sinplan')
+)
+
+class Servicio(models.Model):
 	nombre = models.CharField(max_length=100)
 	descripcion = models.CharField(max_length=500)
 	img=models.FileField(upload_to='imgServicios/')
 	slug = models.SlugField(max_length=100)
+	tipo = models.CharField(choices=TIPO,max_length=30)
 
 	def save(self, *args, **kwargs):
 		self.slug = defaultfilters.slugify(self.nombre)
-		super(Servicios, self).save(*args, **kwargs)
+		super(Servicio, self).save(*args, **kwargs)
 
 	def __unicode__(self):
+		return '%s/%s' %(self.nombre, self.tipo)
+
+class Plan(models.Model):
+	servicio = models.ForeignKey(Servicio)
+	nombre = models.CharField(max_length=100)
+	precio = models.DecimalField(max_digits=10, decimal_places=2) 
+	caracteristicas= models.CharField(max_length=1000)  
+	
+	def __unicode__(self):
 		return self.nombre
+
 
 class Proyecto(models.Model):
 	nombre = models.CharField(max_length=100)
@@ -199,11 +214,15 @@ class ImgRespSocial(models.Model):
 		return self.titulo
 
 class DetalleProducto(models.Model):
-	memoria = models.CharField(max_length=100)
-	sisope= models.CharField(null=True,blank=True,max_length=300)	
-	fecha_max=models.DateField(auto_now=False)
+	procesador = models.CharField(null=True,blank=True,max_length=50)
+	memoriaRAM = models.CharField(null=True,blank=True,max_length=50)
+	discoDuro = models.CharField(null=True,blank=True,max_length=50)
+	pantalla= models.CharField(null=True,blank=True,max_length=50)
+	interfazGrafica = models.CharField(null=True,blank=True,max_length=50)	
+	sisope= models.CharField(null=True,blank=True,max_length=50)	
+	otros = models.CharField(null=True,blank=True,max_length=200)
 	def __unicode__(self):
-		return self.memoria
+		return '%s %s %s %s' %(self.procesador, self.memoriaRAM, self.discoDuro, self.pantalla)
 
 TIPO = (
 	('Laptop','Laptop'),
@@ -211,20 +230,24 @@ TIPO = (
 )
 
 class Producto(models.Model):
-	nombre = models.CharField(max_length=100)
-	descripcion= models.CharField(null=True,blank=True,max_length=300)
-	marca= models.CharField(null=True,blank=True,max_length=100)		
-	precio=models.IntegerField(max_length=3,default=0)
-	detalle=models.ForeignKey(DetalleProducto)
+	nombre = models.CharField(max_length=200)
+	descripcion= models.CharField(null=True,blank=True,max_length=100)
+	marca = models.CharField(max_length=50)		
+	modelo = models.CharField(max_length=50)
+	precio=models.DecimalField(max_digits=10, decimal_places=3)
 	tipo = models.CharField(null=True,blank=True,choices=TIPO,max_length=30)
-	slug = models.SlugField(max_length=100)
-
+	slug = models.SlugField(max_length=200)	
+	adicional_condicion=models.CharField(null=True,blank=True,max_length=100)	
+	oferta = models.BooleanField(default=False)
+	fecha_max=models.DateField(auto_now=False)
+	detalle=models.ForeignKey(DetalleProducto)
+	img=models.FileField(upload_to='imgProducto/')	
 	def save(self, *args, **kwargs):
 		self.slug = defaultfilters.slugify(self.nombre)
 		super(Producto, self).save(*args, **kwargs)
 
 	def __unicode__(self):
-		return self.nombre
+		return unicode(self.nombre)
 
 class Evento(models.Model):
 	nombre = models.CharField(max_length=100)
