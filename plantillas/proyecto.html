@@ -1,0 +1,23 @@
+<html>
+<head>
+	<title>Nuestro Proyectos</title>
+</head>
+<body>
+	<div>
+		<div>
+			<h1>Nuestros Proyectos </h1>
+		</div>
+		<div>
+			{% for i in proyectos %}
+				<div>
+					<img src="{{MEDIA_URL}}{{i.imagen}}">
+				</div>
+				<div>
+					<h3>{{i.nombre}}</a></h3>
+					<p>{{i.descripcion}}</p>
+				</div>
+			{% endfor %}
+		</div>	
+	</div>
+</body>
+</html>

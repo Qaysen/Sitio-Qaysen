@@ -30,6 +30,7 @@ def nosotros(request):
 	equipo=Equipo.objects.all().order_by('?')
 	return render_to_response('nosotros.html', {'nosotros':nosotros,'equipo':equipo},context_instance=RequestContext(request))
 
+
 def ver_servicios(request):
 	servicios=Servicio.objects.all().order_by('?')	
 	return render_to_response('servicios.html', {'servicios':servicios},context_instance=RequestContext(request))
@@ -51,3 +52,21 @@ def ver_productos(request):
 def detalleproducto(request, nomproducto):
 	producto=Producto.objects.get(slug=nomproducto)
 	return render_to_response('detalle_producto.html',{'producto':producto},context_instance = RequestContext(request))
+
+def cliente(request):
+	clientes = Cliente.objects.all()
+	return render_to_response('cliente.html',{'clientes':clientes},context_instance=RequestContext(request))
+
+def proyecto(request):
+	imagenes=ImgProyecto.objects.all()
+	ims= imagenes.values('proyecto__id','proyecto__nombre','proyecto__descripcion').distinct()
+	mis_proyectos=[]
+	for indice,elemento in enumerate(ims):
+		x=imagenes.filter(proyecto__id=elemento['proyecto__id'])
+		mis_proyectos.append({
+			'nombre':elemento['proyecto__nombre'],
+			'descripcion':elemento['proyecto__descripcion'],
+			'imagen':x[0].img			
+			})
+	return render_to_response('proyecto.html',{'proyectos':mis_proyectos},context_instance=RequestContext(request))
+

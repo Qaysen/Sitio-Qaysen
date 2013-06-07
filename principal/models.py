@@ -134,7 +134,8 @@ class Cliente(models.Model):
 	telefono= models.CharField(null=True,blank=True,max_length=10)
 	razonSocial = models.CharField(max_length=100)
 	logo=models.FileField(upload_to='logoCliente/')
-	
+	link_web    = models.CharField(null=True,blank=True,max_length=100)
+	descripcion = models.TextField()
 
 	def __unicode__(self):
 		return self.nombre
