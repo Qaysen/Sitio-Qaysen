@@ -263,3 +263,9 @@ class Evento(models.Model):
 
 	def __unicode__(self):
 		return self.nombre
+
+class Suscripcion(models.Model):
+	email  = models.EmailField(max_length=50,unique=True)
+	codigo = models.CharField(max_length=40,null=False, unique=True)
+	def __unicode__(self):
+		return self.email

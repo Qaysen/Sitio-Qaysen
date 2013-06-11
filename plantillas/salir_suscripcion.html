@@ -1,0 +1,17 @@
+<html>
+<head>
+	<title>Salir de Suscripcion</title>
+</head>
+<body>
+	<h3>
+		Confirma la cancelación de tu registro de tu correo {{email.email}}
+	</h3>	
+	<form method="POST">
+		{% csrf_token %}
+		<input type="checkbox" name="estado" value="True">Salir de Suscrpcion<br>
+		<div>
+			<input type= 'submit' value= 'Confirmar'>
+		</div>
+	</form>
+</body>
+</html>

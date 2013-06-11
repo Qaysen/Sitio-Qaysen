@@ -8,3 +8,7 @@ class ContactoForm(ModelForm):
 	e_mail= forms.EmailField(label="Email", help_text = "Indica tu email",widget=forms.TextInput(attrs={'class': 'required', 'maxlength':75}) )
 	class Meta:
 		model = Contactenos
+
+class SuscripcionForm(ModelForm):
+	class Meta:
+		model=Suscripcion

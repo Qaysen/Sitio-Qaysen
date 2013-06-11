@@ -9,7 +9,7 @@ from django.contrib.auth.forms import ReadOnlyPasswordHashField
 class AdminEntries(admin.ModelAdmin):
     prepopulated_fields = { 'slug': ['nombre'] }
 
-
+admin.site.register(Suscripcion)
 admin.site.register(Equipo)
 admin.site.register(Nosotros)
 admin.site.register(InfContacto)

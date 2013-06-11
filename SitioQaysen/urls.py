@@ -21,5 +21,7 @@ urlpatterns = patterns('',
     url(r'^productos/(?P<nomproducto>[-\w]+)/$','principal.views.detalleproducto'),
     url(r'^clientes/$','principal.views.cliente'),
     url(r'^proyectos/$','principal.views.proyecto'),
+    url(r'^suscripcion/$','principal.views.suscripcion'),
+    url(r'^suscripcion/salir/(?P<codigo>[\w]+)/$','principal.views.salir_suscripcion'),
 
    )
