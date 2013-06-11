@@ -207,6 +207,19 @@ a:hover {
     display: none;
   }
 }
+.contenido {
+  width: 95%;
+  margin: 15px auto;
+}
+.nosotros {
+  width: 49%;
+  display: inline-block;
+  vertical-align: top;
+}
+.equipo article {
+  width: 300px;
+  display: inline-block;
+}
 footer {
   background: #464646;
   border-top: 1px solid #e1e1e1;

@@ -1,0 +1,33 @@
+<html>
+<head>
+	<title>Servicios</title>
+</head>
+<body>
+	    <div>
+      		<h1>PRODUCTOS...Laptops, Notebooks y mas ...</h1>
+      		<img src='http://www.superrobin.com/wp-content/uploads/2012/10/free-laptops.jpeg' style="width:70%; ">
+      		<br>
+      		<br>
+
+      		{% for producto in productos %}
+											
+				<a href="{{producto.slug}}"><img src='{{MEDIA_URL}}{{producto.img}}' style="width:150px; height:150px;"></a>
+				<div >
+		        	<div >
+		          		<a href="{{producto.slug}}">{{producto.nombre}}</a>
+		          		<p>Marca: {{producto.marca}}</p>
+		          		<p>Modelo: {{producto.modelo}}</p>
+		          		Precio: <h1>{{producto.precio}}</h1>
+		          		
+		        	</div>  	
+		        						
+		      	</div>
+		      	<p >{{producto.descripcion}}</p>
+		      						
+		    			
+				{% endfor %}
+
+
+      </div>
+</body>
+</html>

@@ -3,6 +3,7 @@
 	<title>Contactanos</title>
 </head>
 <body>
+	<h1>Contactenos</h1>
 	<form  method="POST">
 		{% csrf_token %}
 		<div>
@@ -11,18 +12,50 @@
 			{{ formulario.nombre.errors }}
 		</div>
 		<div>
+			<label>Ciudad:</label>
+			<input type='text' name='ciudad' >
+			{{ formulario.ciudad.errors }}
+		</div>
+		<div>
 			<label>Email:</label>
 			<input type='email' name='e_mail'>
 			{{ formulario.e_mail.errors }}
 		</div>
 		<div>
-			<label>Descripcion:</label>
-			<input type='text' name='descripcion' >
-			{{ formulario.descripcion.errors }}
+			<label>Teléfono:</label>
+			<input type='text' name='telefono' >
+			{{ formulario.telefono.errors }}
+		</div>
+		<div>
+			<label>Comentario:</label>
+			<input type='text' name='comentario' >
+			{{ formulario.comentario.errors }}
 		</div>
 		<div>
 			<input type= 'submit' value= 'Enviar'>
 		</div>
 	</form>
+	<div>
+		<h1>Informacion de la Empresa</h1>
+		
+	{{info.e_mail}}<br>
+	{{info.direccion}}<br>
+	{{info.telefono}}<br>
+	{{info.cell}}<br>
+	{{info.ruc}}	
+	
+	<div>		            					
+		            	<a href="https://github.com/{{info.git}}" target="_blank"><img src="{{STATIC_URL}}img/icn_github.png"></a>
+		            	<a href="https://github.com/{{info.google}}" target="_blank"><img src="{{STATIC_URL}}img/icn_github.png"></a>
+		            	<a href="https://twitter.com/{{equipo.twitter}}" target="_blank"><img src="{{STATIC_URL}}img/icn_twitter.png"></a>
+		            	<a href="http://www.facebook.com/{{equipo.face}}" target="_blank"><img src="{{STATIC_URL}}img/icn_twitter.png"></a>
+		        	</div>
+
+	</div>
+
+	<div>
+		<iframe width="425" height="350" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://maps.google.com.pe/maps?f=q&amp;source=s_q&amp;hl=es-419&amp;geocode=&amp;q=qaysen+Trujillo&amp;aq=&amp;sll=-8.116674,-79.019508&amp;sspn=0.012342,0.021136&amp;t=h&amp;ie=UTF8&amp;hq=qaysen&amp;hnear=Trujillo,+La+Libertad&amp;ll=-8.105911,-79.029129&amp;spn=0.013396,0.006295&amp;output=embed"></iframe><br /><small><a href="https://maps.google.com.pe/maps?f=q&amp;source=embed&amp;hl=es-419&amp;geocode=&amp;q=qaysen+Trujillo&amp;aq=&amp;sll=-8.116674,-79.019508&amp;sspn=0.012342,0.021136&amp;t=h&amp;ie=UTF8&amp;hq=qaysen&amp;hnear=Trujillo,+La+Libertad&amp;ll=-8.105911,-79.029129&amp;spn=0.013396,0.006295" style="color:#0000FF;text-align:left">Ver mapa más grande</a></small>
+	{{info.mapa}}
+	</div>
 </body>
 </html>

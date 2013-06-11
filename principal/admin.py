@@ -9,13 +9,15 @@ from django.contrib.auth.forms import ReadOnlyPasswordHashField
 class AdminEntries(admin.ModelAdmin):
     prepopulated_fields = { 'slug': ['nombre'] }
 
+
 admin.site.register(Equipo)
 admin.site.register(Nosotros)
 admin.site.register(InfContacto)
 admin.site.register(Contactenos)
 admin.site.register(Slider)
 admin.site.register(Cliente)
-admin.site.register(Servicios, AdminEntries)
+admin.site.register(Servicio, AdminEntries)
+admin.site.register(Plan)
 admin.site.register(Proyecto, AdminEntries)
 admin.site.register(ImgProyecto)
 admin.site.register(RespSocial, AdminEntries)
@@ -23,8 +25,6 @@ admin.site.register(ImgRespSocial)
 admin.site.register(DetalleProducto)
 admin.site.register(Producto, AdminEntries)
 admin.site.register(Evento, AdminEntries)
-
-
 
 #Admin Usuario
 class UserCreationForm(forms.ModelForm):

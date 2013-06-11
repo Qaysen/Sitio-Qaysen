@@ -1,0 +1,21 @@
+<html>
+<head>
+	<title>Laptops, Notebook, ... </title>
+</head>
+<body>
+	    <div>   
+	    	<h1>{{producto.nombre}}</h1>
+	   		<img src='{{MEDIA_URL}}{{producto.img}}' style="width:150px; height:150px;">        		
+      		<p>Marca: {{producto.marca}}</p>
+      		<p>Procesador: {{producto.detalle.procesador}}</p>
+      		<p>RAM: {{producto.detalle.memoriaRAM}}</p> 
+      		<p>HD: {{producto.detalle.discoDuro}}</p> 
+      		<p>Pantalla: {{producto.detalle.pantalla}}</p>  
+      		<p>Interfaz Grafica: {{producto.detalle.interfazGrafica}}</p> 
+      		<p>Sistema Operativo: {{producto.detalle.sisope}}</p>
+      		<p>Otros: {{producto.detalle.otros}}</p> 		
+      </div>
+      <a href="/contactanos">Contáctenos</a>
+</body>
+</html>
+
