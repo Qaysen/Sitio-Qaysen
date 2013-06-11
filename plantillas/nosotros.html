@@ -1,39 +1,50 @@
-<html>
-<head>
-	<title>Nosotros</title>
-</head>
-<body>
+{% extends "base.html" %}
 
-	 {% for nosotros in nosotros %}
-        <div>                    
-                <h1> {{nosotros.titulo}}</h1>               
-               <div>{{nosotros.descripcion}}</div>
-                
-        </div>              
-      {% endfor %}
-      <div>
-      		<h1>EQUIPO DE TRABAJO...</h1>
-      		{% for equipo in equipo %}
-											
-				<a class="photo-trab" href="/"><img src='{{MEDIA_URL}}{{equipo.img}}' style="width:150px; height:150px;"></a>
+{% block titulo %}
+	Quienes Somos Qaysen
+{% endblock titulo %}
+
+{% block slider %}
+		<section class="slider">
+			<h1>¿Quienes somos?</h1>
+		</section>
+{% endblock slider %}
+
+{% block contenido %}
+	<section class="contenido">
+	{% for nosotros in nosotros %}
+		<article class="nosotros">
+			<h3>{{nosotros.titulo}}</h3>
+			<p>{{nosotros.descripcion}}</p>
+		</article>        
+	{% endfor %}
+	</section>
+
+	<section class="equipo">
+
+		<div class="titu">
+            <div class="linea"></div>
+            <div class="pre"></div>
+            <div class="titulo"><span>Nuestro equipo</span></div>
+            <div class="next"></div>
+            <div class="linea"></div>
+        </div>
+
+		{% for equipo in equipo %}
+			<article>
+				<img src='{{MEDIA_URL}}{{equipo.img}}' style="width:150px; height:150px;">
 				<div class="h2">
-		        	<div class="nom-trab">
-		          		<a href="/">{{equipo.usuario}}</a><span class="titulo-trab">, {{equipo.cargo}}</span>
-		        	</div>
-		        	<div class="social-trab">		            					
+					<h3>{{equipo.usuario}}</h3>
+					<p>{{equipo.cargo}}</p>
+		        	<div >		            					
 		            	<a href="https://github.com/{{equipo.git}}" target="_blank"><img src="{{STATIC_URL}}img/icn_github.png"></a>
 		            	<a href="http://www.linkedin.com/profile/view?id={{equipo.linkedin}}" target="_blank"><img src="{{STATIC_URL}}img/icn_linkedin.png"></a>
 		            	<a href="https://twitter.com/{{equipo.twitter}}" target="_blank"><img src="{{STATIC_URL}}img/icn_twitter.png"></a>
 		            	<a href="http://www.facebook.com/{{equipo.face}}" target="_blank"><img src="{{STATIC_URL}}img/icn_twitter.png"></a>
 		        	</div>
-		        						
 		      	</div>
-		      	<p class="descr-trab">{{equipo.descripcion}}</p>
-		      						
-		    			
-				{% endfor %}
-
-
-      </div>
-</body>
-</html>
+		      	<p>{{equipo.descripcion}}</p>
+			</article>
+		{% endfor %}
+	</section>
+{% endblock contenido %}

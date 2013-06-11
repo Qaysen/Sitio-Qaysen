@@ -1,4 +1,5 @@
-#encoding=utf-8
+#encoding:utf-8
+
 from principal.models import *
 from django.http import HttpResponse, HttpResponseRedirect, Http404
 from django.shortcuts import render_to_response, get_object_or_404
@@ -12,19 +13,20 @@ def inicio(request):
 	return render_to_response('inicio.html', context_instance=RequestContext(request))
 
 def contacto(request):
+	info=InfContacto.objects.get(pk=1)
 	if request.method=='POST':
 		formulario=ContactoForm(request.POST)
 		if formulario.is_valid():
 			formulario.save()
-			to_admin='edulozano.30@gmail.com'
-			html_contenido = "<p>Preguntas o Inquietudes del Cliente :</p><br><br><b>Nombre de la persona que envia: </b> %s <br><b>email: </b> %s<br><b>Descripcion:</b> %s  "%(request.POST['nombre'] ,request.POST['e_mail'],request.POST['descripcion'])
-			msg = EmailMultiAlternatives('Solicitar Informacion de Qaysen Sac',html_contenido,'from@server.com',[to_admin])
+			to_admin='elicia.cor@gmail.com'
+			html_contenido = "<p>Preguntas o Inquietudes del Cliente :</p><br><br><b>Nombre de la persona que envia: </b> %s <br>Ciudad: </br> %s <br><b>email: </b> %s <br>Telefono: </br> %s <br><b>Comentario: </b> %s  "%(request.POST['nombre'] , request.POST['ciudad'] ,request.POST['e_mail'],request.POST['telefono'] ,request.POST['comentario'])
+			msg = EmailMultiAlternatives('Solicitar Informacion',html_contenido,'from@server.com',[to_admin])
 			msg.attach_alternative(html_contenido,'text/html')#Definir el contenido como html
 			msg.send()
 			return HttpResponseRedirect('/')
 	else:
 		formulario=ContactoForm()
-	return render_to_response('contacto.html', {'formulario':formulario},context_instance=RequestContext(request))
+	return render_to_response('contacto.html', {'formulario':formulario,'info':info},context_instance=RequestContext(request))
 
 
 def nosotros(request):

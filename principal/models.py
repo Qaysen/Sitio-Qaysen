@@ -96,8 +96,8 @@ class Nosotros(models.Model):
 		return self.titulo
 
 class InfContacto(models.Model):	
-	mapa = models.CharField(max_length=100)
-	e_mail = models.EmailField(max_length=50)	
+	mapa = models.CharField(max_length=1000)
+	e_mail = models.EmailField(max_length=20)	
 	direccion= models.CharField(null=True,blank=True,max_length=300)
 	telefono= models.CharField(null=True,blank=True,max_length=10)
 	cell= models.CharField(null=True,blank=True,max_length=9)
@@ -113,8 +113,10 @@ class InfContacto(models.Model):
 
 class Contactenos(models.Model):	
 	nombre = models.CharField(max_length=100)
+	ciudad = models.CharField(max_length=100)
 	e_mail = models.EmailField(max_length=50)
-	descripcion = models.TextField()	
+	telefono =models.CharField(max_length=8)
+	comentario = models.TextField()	
 
 	def __unicode__(self):
 		return self.nombre

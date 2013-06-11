@@ -1,0 +1,49 @@
+*
+	box-sizing border-box
+
+.contenedor
+	width 100%
+	overflow hidden
+
+.centrado
+	margin 0 4%
+
+.columna
+	float left
+	overflow hidden
+
+@media only screen
+	body
+		background white
+	.des-hide
+		display none
+	for numero in 1..16
+		.des-{numero}
+			width (numero*100/16)%
+
+@media only screen and (min-width: 768px) and (max-width: 980px)
+	body
+		background blue
+	.tab-hide
+		display none
+	for numero in 1..16
+		.tab-{numero}
+			width (numero*100/16)%
+
+@media only screen and (min-width: 481px) and (max-width: 767px)
+	body
+		background yellow
+	.maj-hide
+		display none
+	for numero in 1..16
+		.maj-{numero}
+			width (numero*100/16)%
+
+@media only screen and (max-width: 480px)
+	body
+		background red
+	.cel-hide
+		display none
+	for numero in 1..16
+		.cel-{numero}
+			width (numero*100/16)%
