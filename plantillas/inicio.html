@@ -1,1 +1,136 @@
 {% extends "base.html" %}
+
+{% block titulo %}
+	Qaysen
+{% endblock titulo %}
+
+{% block slider %}
+		<section class="slider">
+            <ul>
+                <li>
+                    <article>
+                        <div class="contenido">
+                            <h3>Nosotros</h3>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repellendus, doloribus, aut vel quibusdam quod voluptates accusantium odio quis a sit quisquam eum ex rerum sunt sequi. Autem, repellat ab ducimus!</p>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Explicabo, assumenda, illum rerum fugiat qui nobis hic reiciendis a laboriosam vero error atque asperiores molestias ipsam accusantium nesciunt dolore laborum iste.</p>
+                        </div>
+                        <figure>
+                            <img src="http://josearaguez.com/wp-content/uploads/2013/01/responsive_web_design.png" alt="">
+                        </figure>
+                    </article>
+                </li>
+                <li>
+                    <article>
+                        <div class="contenido">
+                            <h3>Servicios</h3>
+                        </div>
+                        <figure><img src="" alt=""></figure>
+                    </article>
+                </li>
+                <li>
+                    <article>
+                        <div class="contenido">
+                            <h3>Productos</h3>
+                        </div>
+                        <figure><img src="" alt=""></figure>
+                    </article>
+                </li>
+                <li>
+                    <article>
+                        <div class="contenido">
+                            <h3>Proyectos</h3>
+                        </div>
+                        <figure><img src="" alt=""></figure>
+                    </article>
+                </li>
+                <li>
+                    <article>
+                        <div class="contenido">
+                            <h3>Responsabilidad Social</h3>
+                        </div>
+                        <figure><img src="" alt=""></figure>
+                    </article>
+                </li>
+            </ul>
+        </section>
+{% endblock slider %}
+
+{% block servicios %}
+		<section class="servicios">
+            <div class="titu">
+                <div class="linea"></div>
+                <div class="pre"></div>
+                <div class="titulo"><span>Servicios</span></div>
+                <div class="next"></div>
+                <div class="linea"></div>
+            </div>
+
+            <article class="servicio">
+                <img src="http://sputnikcreative.com/assets/img/capabilities1.png" alt="">
+                <h5>Diseño y desarrollo de Paginas web</h5>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci, enim, distinctio eius tempore officia facere sit totam aliquid odit rem ea asperiores ipsum voluptatem repellat necessitatibus unde saepe nisi sunt!</p>
+            </article>
+            <article class="servicio">
+                <img src="http://sputnikcreative.com/assets/img/capabilities2.png" alt="">
+                <h5>Diseño y desarrollo de Paginas web</h5>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci, enim, distinctio eius tempore officia facere sit totam aliquid odit rem ea asperiores ipsum voluptatem repellat necessitatibus unde saepe nisi sunt!</p>
+            </article>
+            <article class="servicio">
+                <img src="http://sputnikcreative.com/assets/img/capabilities3.png" alt="">
+                <h5>Diseño y desarrollo de Paginas web</h5>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci, enim, distinctio eius tempore officia facere sit totam aliquid odit rem ea asperiores ipsum voluptatem repellat necessitatibus unde saepe nisi sunt!</p>
+            </article>
+            <article class="servicio">
+                <img src="http://sputnikcreative.com/assets/img/capabilities3.png" alt="">
+                <h5>Diseño y desarrollo de Paginas web</h5>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci, enim, distinctio eius tempore officia facere sit totam aliquid odit rem ea asperiores ipsum voluptatem repellat necessitatibus unde saepe nisi sunt!</p>
+            </article>
+        </section>
+{% endblock servicios %}
+
+{% block productos %}
+		<section class="productos">
+            <div class="titu">
+                <div class="linea"></div>
+                <div class="pre"></div>
+                <div class="titulo"><span>Productos</span></div>
+                <div class="next"></div>
+                <div class="linea"></div>
+            </div>
+
+            <article class="servicio">
+                <img src="http://sputnikcreative.com/assets/img/capabilities4.png" alt="">
+                <h5>Diseño y desarrollo de Paginas web</h5>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci, enim, distinctio eius tempore officia facere sit totam aliquid odit rem ea asperiores ipsum voluptatem repellat necessitatibus unde saepe nisi sunt!</p>
+            </article>
+            <article class="servicio">
+                <img src="http://sputnikcreative.com/assets/img/capabilities5.png" alt="">
+                <h5>Diseño y desarrollo de Paginas web</h5>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci, enim, distinctio eius tempore officia facere sit totam aliquid odit rem ea asperiores ipsum voluptatem repellat necessitatibus unde saepe nisi sunt!</p>
+            </article>
+            <article class="servicio">
+                <img src="http://sputnikcreative.com/assets/img/capabilities6.png" alt="">
+                <h5>Diseño y desarrollo de Paginas web</h5>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci, enim, distinctio eius tempore officia facere sit totam aliquid odit rem ea asperiores ipsum voluptatem repellat necessitatibus unde saepe nisi sunt!</p>
+            </article>
+        </section>
+{% endblock productos %}
+
+{% block script %}
+		<script>
+            $(document).on('ready', inicio);
+            
+            function inicio()
+            {
+                $(function() {
+                    $('.slider').unslider({
+                        speed: 2000,
+                        delay: 5000,
+                        // keys: true,
+                        dots: true,
+                        fluid: true
+                    });
+                });
+            }
+        </script>
+{% endblock script %}

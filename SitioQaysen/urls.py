@@ -13,8 +13,9 @@ urlpatterns = patterns('',
 	# 
     url(r'^$', 'principal.views.inicio'),
 
-    # url(r'^equipo/$', 'principal.views.equipo'),
+    url(r'^nosotros/$', 'principal.views.nosotros'),
 
-    # url(r'^contactanos/$', 'principal.views.contacto'),
-
+    url(r'^contactanos/$', 'principal.views.contacto'),
+    url(r'^clientes/$','principal.views.cliente'),
+    url(r'^proyectos/$','principal.views.proyecto'),
    )

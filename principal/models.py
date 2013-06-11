@@ -1,7 +1,73 @@
 from django.db import models
-from django.contrib.auth.models import User
+from django.contrib.auth.models import User, AbstractBaseUser,BaseUserManager
 from django.template import defaultfilters
+from django.db.models import signals
 
+#Usuarios Admin
+class MyUserManager(BaseUserManager):
+	def create_user(self, username, email , password=None):
+		if not email:
+			raise ValueError('The given email must be set')
+		user = self.model( username=username, 
+						email = MyUserManager.normalize_email(email))
+
+		user.set_password(password)
+		user.save(using=self._db)
+		return user
+
+	def create_superuser(self,username, email ,password):
+		user = self.create_user(username, password=password, email=email)
+		user.is_admin = True
+		user.save(using=self._db)
+		return user
+
+
+class MyUser(AbstractBaseUser):
+	usuarios = (
+		('Administrador','Administrador'),
+		('Equipo','Equipo'),
+		('Cliente','Cliente'),
+	)
+	username = models.CharField(max_length=200 , unique=True)
+	email = models.EmailField(db_index=True)
+	tipo_usuario=models.CharField(choices=usuarios,max_length=12)
+	dni = models.CharField(max_length=8,null=True,blank=True)
+	direccion =models.CharField(max_length=100,null=True,blank=True)
+	distrito =models.CharField(max_length=20,null=True,blank=True)
+	provincia=models.CharField(max_length=20,null=True,blank=True)
+	departamento=models.CharField(max_length=20,null=True,blank=True)
+	telefono=models.CharField(max_length=7,null=True,blank=True)
+	slug = models.SlugField()
+
+
+	is_active = models.BooleanField(default=True)
+	is_admin = models.BooleanField(default=False)
+
+	objects = MyUserManager()
+
+	USERNAME_FIELD = 'username'
+	REQUIRED_FIELDS = ['email']
+
+	def get_full_name(self):
+		return self.email
+ 
+	def get_short_name(self):
+		return self.email
+ 
+	def __unicode__(self):
+		return self.email
+
+	def has_perm(self, perm, obj=None):
+		return True
+
+	def has_module_perms(self, app_label):
+		return True
+
+	@property
+	def is_staff(self):
+		return self.is_admin
+
+#Fin Usuarios Admin	
 
 GENERO = (
 	('Masculino','Masculino'),
@@ -9,7 +75,7 @@ GENERO = (
 )
 
 class Equipo(models.Model):
-	usuario = models.ForeignKey(User)	
+	usuario = models.ForeignKey(MyUser)	
 	descripcion = models.CharField(max_length=500)
 	cargo=models.CharField(max_length=20)
 	img=models.FileField(upload_to='fotoCarnet/')
@@ -69,7 +135,8 @@ class Cliente(models.Model):
 	telefono= models.CharField(null=True,blank=True,max_length=10)
 	razonSocial = models.CharField(max_length=100)
 	logo=models.FileField(upload_to='logoCliente/')
-	
+	link_web    = models.CharField(null=True,blank=True,max_length=100)
+	descripcion = models.TextField()
 
 	def __unicode__(self):
 		return self.nombre

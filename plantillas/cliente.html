@@ -1,0 +1,25 @@
+<html>
+<head>
+	<title>Nuestros Clientes</title>
+</head>
+<body>
+	<div>
+		<div>
+			<h1>Clientes que nos brindan su confianza</h1>
+		</div>
+		<div>
+			{% for i in clientes %}
+				<div>
+					<img src="{{MEDIA_URL}}{{i.logo}}">
+				</div>
+            	<div>
+					<h3>{{i.nombre}}</a></h3>
+					<h5><a href="http://{{i.link_web}}"> http://{{i.link_web}}</a></h5>
+					<p>{{i.descripcion}}</p>
+            	</div>
+			{% endfor %}
+		</div>
+
+	</div>
+</body>
+</html>
