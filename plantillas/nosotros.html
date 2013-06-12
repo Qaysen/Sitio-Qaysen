@@ -11,13 +11,10 @@
 {% endblock slider %}
 
 {% block contenido %}
-	<section class="contenido">
-	{% for nosotros in nosotros %}
-		<article class="nosotros">
-			<h3>{{nosotros.titulo}}</h3>
-			<p>{{nosotros.descripcion}}</p>
-		</article>        
-	{% endfor %}
+	<section class="contenido1">
+		{% for nosotros in nosotros %}
+			<p>{{nosotros.descripcion}} - Nuestra misión</p>
+		{% endfor %}
 	</section>
 
 	<section class="equipo">
@@ -32,18 +29,14 @@
 
 		{% for equipo in equipo %}
 			<article>
-				<img src='{{MEDIA_URL}}{{equipo.img}}' style="width:150px; height:150px;">
-				<div class="h2">
-					<h3>{{equipo.usuario}}</h3>
-					<p>{{equipo.cargo}}</p>
-		        	<div >		            					
-		            	<a href="https://github.com/{{equipo.git}}" target="_blank"><img src="{{STATIC_URL}}img/icn_github.png"></a>
-		            	<a href="http://www.linkedin.com/profile/view?id={{equipo.linkedin}}" target="_blank"><img src="{{STATIC_URL}}img/icn_linkedin.png"></a>
-		            	<a href="https://twitter.com/{{equipo.twitter}}" target="_blank"><img src="{{STATIC_URL}}img/icn_twitter.png"></a>
-		            	<a href="http://www.facebook.com/{{equipo.face}}" target="_blank"><img src="{{STATIC_URL}}img/icn_twitter.png"></a>
-		        	</div>
-		      	</div>
-		      	<p>{{equipo.descripcion}}</p>
+				<img src='{{MEDIA_URL}}{{equipo.img}}' style="width:100px;">
+				<h3>{{equipo.usuario.username}}</h3>
+				<p>{{equipo.cargo}}</p>
+	        	<div >		            					
+	            	<a href="https://github.com/{{equipo.git}}" target="_blank"><img class="red_social" src="{{STATIC_URL}}img/Github.png"></a>
+	            	<a href="https://twitter.com/{{equipo.twitter}}" target="_blank"><img class="red_social" src="{{STATIC_URL}}img/Twitter.png"></a>
+	            	<a href="http://www.facebook.com/{{equipo.face}}" target="_blank"><img class="red_social" src="{{STATIC_URL}}img/Facebook.png"></a>
+	        	</div>
 			</article>
 		{% endfor %}
 	</section>

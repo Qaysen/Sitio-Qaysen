@@ -1,28 +1,29 @@
-<html>
-<head>
-	<title>Servicios</title>
-</head>
-<body>
-	    <div>
-      		<h1>SERVICIOS...</h1>
-      		<img src='http://www.darioarede.com.ar/wp-content/uploads/2013/02/cropped-dise%C3%B1o-web-colombia-web.jpg' style="width:60%; ">
-      		<br>
-      		<br>
-      		{% for servicio in servicios %}
-											
-				<a class="" href="{{servicio.slug}}"><img src='{{MEDIA_URL}}{{servicio.img}}' style="width:150px; height:150px;"></a>
-				<div >
-		        	<div >
-		          		<a href="{{servicio.slug}}">{{servicio.nombre}}</a>
-		        	</div>  	
-		        						
-		      	</div>
-		      	<p >{{servicio.descripcion}}</p>
-		      						
-		    			
-				{% endfor %}
+{% extends "base.html" %}
 
+{% block titulo %}
+	Servicios de Qaysen
+{% endblock titulo %}
 
-      </div>
-</body>
-</html>
+{% block slider %}
+		<section class="slider">
+			<h1>Servicios</h1>
+		</section>
+{% endblock slider %}
+
+{% block contenido %}
+	<section class="contenido1">
+		<p>Conoce nuestros servicios.</p>
+	</section>
+	<section class="servicios1">
+		{% for servicio in servicios %}
+			<article>
+				<img src='{{MEDIA_URL}}{{servicio.img}}' style="width:150px;">
+				<h4>
+					<a href="{{servicio.slug}}">{{servicio.nombre}}</a>
+				</h4>
+	          	<p>{{servicio.descripcion}}</p>
+				<button href="{{servicio.slug}}">Mas información</button>
+			</article>
+		{% endfor %}
+	</section>
+{% endblock contenido %}

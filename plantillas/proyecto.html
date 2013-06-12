@@ -1,23 +1,26 @@
-<html>
-<head>
-	<title>Nuestro Proyectos</title>
-</head>
-<body>
-	<div>
-		<div>
-			<h1>Nuestros Proyectos </h1>
-		</div>
-		<div>
-			{% for i in proyectos %}
-				<div>
-					<img src="{{MEDIA_URL}}{{i.imagen}}">
-				</div>
-				<div>
+{% extends "base.html" %}
+
+{% block titulo %}
+	Proyectos de Qaysen
+{% endblock titulo %}
+
+{% block slider %}
+		<section class="slider">
+			<h1>Nuestros Proyectos de Qaysen</h1>
+		</section>
+{% endblock slider %}
+
+{% block contenido %}
+		<section class="contenido1">
+			<p>Mira todos los proyectos propios que hemos realizado hasta el momento y los que estamos realizando.</p>
+		</section>
+		{% for i in proyectos %}
+			<article class="proyectos {{i.nombre}}">
+				<img src="{{MEDIA_URL}}{{i.imagen}}">
+				<div class="info">
 					<h3>{{i.nombre}}</a></h3>
 					<p>{{i.descripcion}}</p>
 				</div>
-			{% endfor %}
-		</div>	
-	</div>
-</body>
-</html>
+			</article>
+		{% endfor %}
+{% endblock contenido %}
