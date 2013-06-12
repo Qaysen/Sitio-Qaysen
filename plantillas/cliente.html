@@ -1,25 +1,29 @@
-<html>
-<head>
-	<title>Nuestros Clientes</title>
-</head>
-<body>
-	<div>
-		<div>
-			<h1>Clientes que nos brindan su confianza</h1>
-		</div>
-		<div>
-			{% for i in clientes %}
-				<div>
-					<img src="{{MEDIA_URL}}{{i.logo}}">
-				</div>
-            	<div>
-					<h3>{{i.nombre}}</a></h3>
-					<h5><a href="http://{{i.link_web}}"> http://{{i.link_web}}</a></h5>
-					<p>{{i.descripcion}}</p>
-            	</div>
-			{% endfor %}
-		</div>
+{% extends "base.html" %}
 
-	</div>
-</body>
-</html>
+{% block tiulos %}
+	Clientes de Qaysen
+{% endblock tiulos %}
+
+{% block slider %}
+	<section class="slider">
+		<h1>Estos clientes confiaron en nosotros</h1>
+	</section>
+{% endblock slider %}
+
+{% block contenido %}
+	<section class="contenido1">
+		<p>Conoce lo que hemos hecho hasta ahora.</p>
+	</section>
+
+	{% for i in clientes %}
+	<article class="proyectos">
+		<img src="{{MEDIA_URL}}{{i.logo}}" />
+		<div class="info">
+			<h3>
+				<a href="http://{{i.link_web}}">{{i.nombre}}</a>
+			</h3>
+			<p>{{i.descripcion}}</p>
+		</div>
+	</article>
+	{% endfor %}
+{% endblock contenido %}
