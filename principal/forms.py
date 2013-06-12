@@ -12,3 +12,7 @@ class ContactoForm(ModelForm):
 
 	class Meta:
 		model = Contactenos
+
+class SuscripcionForm(ModelForm):
+	class Meta:
+		model=Suscripcion

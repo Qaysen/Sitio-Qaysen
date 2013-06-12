@@ -1,9 +1,11 @@
 #encoding:utf-8
+
 from principal.models import *
 from django.http import HttpResponse, HttpResponseRedirect, Http404
 from django.shortcuts import render_to_response, get_object_or_404
 from django.template import RequestContext
-from principal.forms import ContactoForm
+from principal.forms import ContactoForm, SuscripcionForm
+from random import choice
 from django.core.mail import EmailMultiAlternatives #ENVIAR HTML
 
 # Pagina de inicio
@@ -72,3 +74,32 @@ def proyecto(request):
 			})
 	return render_to_response('proyecto.html',{'proyectos':mis_proyectos},context_instance=RequestContext(request))
 
+def suscripcion(request):
+	if request.method=='POST':
+		formu= request.POST.copy()
+		codigo = make_random_password()
+		formu['codigo']= codigo
+		formulario=SuscripcionForm(formu)
+		if formulario.is_valid():
+			formulario.save()
+			html_contenido ="<p>Usted ha sido suscrito a nuetras novedades de productos y servicios :</p><br><br>"
+			html_contenido+="<b>Su email: </b> %s </b>"%(request.POST['email'])
+			html_contenido+="<br>Si no desea recibir mas informacion, por favor de clic" 
+			html_contenido+="<br><a title='Cancelar la suscripcion de esta web' href='http://wwww.qaysen.com/suscripcion/salir/%s'>AQUI</a>"%(codigo)
+			msg = EmailMultiAlternatives('suscripción  a Qaysen S.A.C',html_contenido ,'from@server.com',[request.POST['email']])
+			msg.attach_alternative(html_contenido,'text/html')#Definir el contenido como html
+			msg.send()
+			return HttpResponseRedirect('/suscripcion')
+	else:
+		formulario=SuscripcionForm()
+	return render_to_response('suscripcion.html', {'formulario':formulario},context_instance=RequestContext(request))
+
+def make_random_password(length=40, allowed_chars='abcdefghjkmnpqrstuvwxyzABCDEFGHJKLMNPQRSTUVWXYZ23456789'):
+	return ''.join([choice(allowed_chars) for i in range(length)])
+
+
+def salir_suscripcion(request,codigo):
+	codigo =Suscripcion.objects.get(codigo=codigo)
+	if request.method=='POST':
+		codigo.delete()
+	return render_to_response('salir_suscripcion.html', {'email':codigo},context_instance=RequestContext(request))
