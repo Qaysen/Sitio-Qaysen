@@ -297,6 +297,7 @@ a:hover {
 }
 .proyectos {
   padding: 20px;
+  border-bottom: 1px solid #e1e1e1;
 }
 .proyectos img {
   width: 48%;
