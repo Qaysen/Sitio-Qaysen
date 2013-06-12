@@ -10,10 +10,14 @@ from django.core.mail import EmailMultiAlternatives #ENVIAR HTML
 
 # Pagina de inicio
 def inicio(request):
-	return render_to_response('inicio.html', context_instance=RequestContext(request))
+	slider =Slider.objects.all()
+	productos=Producto.objects.order_by('?')[:4]
+	servicios=Servicio.objects.order_by('?')[:4]
+	return render_to_response('inicio2.html', {'slider':slider,'productos':productos,'servicios':servicios},context_instance=RequestContext(request))
 
-def contacto(request):
+def contacto(request):	
 	info=InfContacto.objects.get(pk=1)
+	print info.mapa		
 	if request.method=='POST':
 		formulario=ContactoForm(request.POST)
 		if formulario.is_valid():

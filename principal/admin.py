@@ -83,15 +83,14 @@ class MyUserAdmin(UserAdmin):
 	list_filter = ('is_admin',)
 	fieldsets = (
 			(None, {'fields': ('username', 'password')}),
-			('Personal info', {'fields': ('email','dni','direccion','distrito','provincia','departamento','telefono','slug',)}),
+			('Personal info', {'fields': ('nombre','apellidos','email','dni','direccion','distrito','provincia','departamento','telefono',)}),
 			('Permissions', {'fields': ('is_admin',)}),
-			('Groups', {'fields': ('tipo_usuario',)}),
 			('Important dates', {'fields': ('last_login',)}),
 		)
 	add_fieldsets = (
 		(None, {
 			'classes': ('wide',),
-			'fields': ('username', 'tipo_usuario', 'password1', 'password2')}#campos necesarios para crear un usuario
+			'fields': ('username', 'password1', 'password2')}#campos necesarios para crear un usuario
 		),
 	)
 	search_fields = ('username',)

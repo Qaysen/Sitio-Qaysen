@@ -23,22 +23,23 @@ class MyUserManager(BaseUserManager):
 
 
 class MyUser(AbstractBaseUser):
-	usuarios = (
-		('Administrador','Administrador'),
-		('Equipo','Equipo'),
+	
+	GENERO = (
+	('Masculino','Masculino'),
+	('Femenino','Femenino')
 	)
 	username = models.CharField(max_length=200 , unique=True)
+	nombre = models.CharField(max_length=200)
+	apellidos = models.CharField(max_length=200)
 	email = models.EmailField(db_index=True)
-	tipo_usuario=models.CharField(choices=usuarios,max_length=12)
+	genero = models.CharField(null=True,blank=True,choices=GENERO,max_length=30)
 	dni = models.CharField(max_length=8,null=True,blank=True)
 	direccion =models.CharField(max_length=100,null=True,blank=True)
 	distrito =models.CharField(max_length=20,null=True,blank=True)
 	provincia=models.CharField(max_length=20,null=True,blank=True)
 	departamento=models.CharField(max_length=20,null=True,blank=True)
 	telefono=models.CharField(max_length=7,null=True,blank=True)
-	slug = models.SlugField()
-
-
+	
 	is_active = models.BooleanField(default=True)
 	is_admin = models.BooleanField(default=False)
 
@@ -68,19 +69,13 @@ class MyUser(AbstractBaseUser):
 
 #Fin Usuarios Admin	
 
-GENERO = (
-	('Masculino','Masculino'),
-	('Femenino','Femenino')
-)
+
 
 class Equipo(models.Model):
 	usuario = models.ForeignKey(MyUser)	
 	descripcion = models.CharField(max_length=500)
 	cargo=models.CharField(max_length=20)
-	img=models.FileField(upload_to='fotoCarnet/')
-	genero = models.CharField(null=True,blank=True,choices=GENERO,max_length=30)
-	direccion= models.CharField(null=True,blank=True,max_length=300)
-	telefono= models.CharField(null=True,blank=True,max_length=10)
+	img=models.FileField(upload_to='fotoCarnet/')	
 	git= models.CharField(null=True,blank=True,max_length=100)
 	face = models.CharField(null=True,blank=True,max_length=100)
 	twitter = models.CharField(null=True,blank=True,max_length=100)
@@ -109,7 +104,7 @@ class InfContacto(models.Model):
 	
 
 	def __unicode__(self):
-		return self.mapa
+		return self.e_mail
 
 class Contactenos(models.Model):	
 	nombre = models.CharField(max_length=100)
@@ -150,6 +145,7 @@ TIPO = (
 class Servicio(models.Model):
 	nombre = models.CharField(max_length=100)
 	descripcion = models.CharField(max_length=500)
+	caracteristicas= models.CharField(max_length=1000)  
 	img=models.FileField(upload_to='imgServicios/')
 	slug = models.SlugField(max_length=100)
 	tipo = models.CharField(choices=TIPO,max_length=30)

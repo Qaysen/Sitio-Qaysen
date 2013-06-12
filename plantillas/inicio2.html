@@ -1,0 +1,42 @@
+<html>
+<head>
+	<title>Slider</title>
+</head>
+<body>
+	<h1>Slider</h1>
+	{% for slider in slider %}
+		<p>{{slider.titulo}}</p>
+		<p>{{slider.descripcion}}</p>
+		<img src="{{MEDIA_URL}}{{slider.img}}">
+	{% endfor %}
+
+	<h1>Productos</h1>
+	{% for producto in productos %}
+		<article>
+			<img src='{{MEDIA_URL}}{{producto.img}}'>
+      		<h4>
+      			<a href="{{producto.slug}}">{{producto.nombre}}</a>
+      		</h4>
+      		<p>Marca: {{producto.marca}}</p>
+      		<p>Modelo: {{producto.modelo}}</p>
+      		<p class="precio">Precio: {{producto.precio}}</p>
+		</article>
+		{% endfor %}
+
+	<h1>Servicios</h1>
+	{% for servicio in servicios %}
+			<article>
+				<img src='{{MEDIA_URL}}{{servicio.img}}' style="width:150px;">
+				<h4>
+					<a href="{{servicio.slug}}">{{servicio.nombre}}</a>
+				</h4>
+	          	<p>{{servicio.descripcion}}</p>
+				<button href="{{servicio.slug}}">Mas información</button>
+			</article>
+		{% endfor %}
+
+	
+	{{info.mapa}}
+
+</body>
+</html>
