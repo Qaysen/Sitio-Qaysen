@@ -20,6 +20,47 @@
 	</section>
 {% endblock slider %}
 
+{% block contenido %}
+		<div class="titu">
+            <div class="linea"></div>
+            <div class="pre"></div>
+            <div class="titulo"><span>Servicios</span></div>
+            <div class="next"></div>
+            <div class="linea"></div>
+        </div>
+		<section class="servicios1">
+            {% for servicio in servicios %}
+			<article class="servicio">
+				<img src='{{MEDIA_URL}}{{servicio.img}}'>
+				<h4>
+					<a href="/servicios/{{servicio.slug}}">{{servicio.nombre}}</a>
+				</h4>
+	          	<p>{{servicio.descripcion}}</p>
+				<button href="{{servicio.slug}}">Mas información</button>
+			</article>
+			{% endfor %}
+        </section>
+        <div class="titu">
+            <div class="linea"></div>
+            <div class="pre"></div>
+            <div class="titulo"><span>Productos</span></div>
+            <div class="next"></div>
+            <div class="linea"></div>
+        </div>
+
+        {% for producto in productos %}
+		<article>
+			<img src='{{MEDIA_URL}}{{producto.img}}'>
+      		<h4>
+      			<a href="{{producto.slug}}">{{producto.nombre}}</a>
+      		</h4>
+      		<p>Marca: {{producto.marca}}</p>
+      		<p>Modelo: {{producto.modelo}}</p>
+      		<p class="precio">Precio: {{producto.precio}}</p>
+		</article>
+		{% endfor %}
+{% endblock contenido %}
+
 {% block script %}
 		<script>
             $(document).on('ready', inicio);
@@ -38,61 +79,3 @@
             }
         </script>
 {% endblock script %}
-
-{% block contenido %}
-
-			<section class="contenido1">
-		<!-- Begin MailChimp Signup Form -->
-<form action="http://gmail.us7.list-manage2.com/subscribe/post?u=9dfe9de0964d99b61edfeeefd&amp;id=ecb454ee3b" method="post" target="_blank">
-	
-	<label for="mce-EMAIL">Email Address </label>
-	<input type="email" name="EMAIL">
-	<input type="submit" value="Subscribe">
-</form>
-
-<!--End mc_embed_signup-->
-	</section>
-
-		<section class="servicios">
-            <div class="titu">
-                <div class="linea"></div>
-                <div class="pre"></div>
-                <div class="titulo"><span>Servicios</span></div>
-                <div class="next"></div>
-                <div class="linea"></div>
-            </div>
-
-            {% for servicio in servicios %}
-			<article class="servicio">
-				<img src='{{MEDIA_URL}}{{servicio.img}}'>
-				<h5>
-					<a href="{{servicio.slug}}">{{servicio.nombre}}</a>
-				</h5>
-	          	<p>{{servicio.descripcion}}</p>
-				<button href="{{servicio.slug}}">Mas información</button>
-			</article>
-			{% endfor %}
-        </section>
-{% endblock contenido %}
-
-
-	<h1>Productos</h1>
-	{% for producto in productos %}
-		<article>
-			<img src='{{MEDIA_URL}}{{producto.img}}'>
-      		<h4>
-      			<a href="{{producto.slug}}">{{producto.nombre}}</a>
-      		</h4>
-      		<p>Marca: {{producto.marca}}</p>
-      		<p>Modelo: {{producto.modelo}}</p>
-      		<p class="precio">Precio: {{producto.precio}}</p>
-		</article>
-		{% endfor %}
-
-	<h1>Servicios</h1>
-
-	
-	{{info.mapa}}
-
-</body>
-</html>

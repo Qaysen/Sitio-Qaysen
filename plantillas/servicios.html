@@ -17,7 +17,7 @@
 	<section class="servicios1">
 		{% for servicio in servicios %}
 			<article>
-				<img src='{{MEDIA_URL}}{{servicio.img}}' style="width:150px;">
+				<img src='{{MEDIA_URL}}{{servicio.img}}'>
 				<h4>
 					<a href="{{servicio.slug}}">{{servicio.nombre}}</a>
 				</h4>

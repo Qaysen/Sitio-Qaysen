@@ -25,6 +25,9 @@ admin.site.register(ImgRespSocial)
 admin.site.register(DetalleProducto)
 admin.site.register(Producto, AdminEntries)
 admin.site.register(Evento, AdminEntries)
+admin.site.register(ServicioCaract)
+admin.site.register(PlanCaract)
+
 
 #Admin Usuario
 class UserCreationForm(forms.ModelForm):

@@ -66,6 +66,8 @@ a:hover
 	vertical-align top
 	z-index 2
 	position relative
+	height 45px
+	overflow hidden
 	.espacio
 		width 220px
 		overflow hidden
@@ -187,17 +189,12 @@ a:hover
 	img
 		width 100%
 
-@media screen and (max-width: 480px)
-	.servicio
-		width 100%
-	#menu
-		display none
 // Nosotros
 .contenido1
 	background Color_ploma_claro
 	border-bottom 1px solid Bordes_cajas_plomo_claro
 	p
-		font-size 1.5em
+		font-size 1.4em
 		font-weight 300
 		margin 0
 		padding 20px
@@ -230,17 +227,23 @@ a:hover
 		vertical-align top
 		width 33%
 		img
-			height 120px
-			margin-bottom 20px
+			margin-bottom 10px
+			width 100%
 		h4
+			margin 5px 0
 			font-weight 700
+			font-size 1.3em
+			a
+				color Enlace
+				&:hover
+					color Naranja
 		p
 			font-size 0.9em
 		button
 			background Color_ploma_claro
 			border-radius 4px
 			border 1px solid Bordes_cajas_plomo_claro
-			font-size 0.8em
+			font-size 0.9em
 			padding 5px
 			color Enlace
 			&:hover
@@ -314,3 +317,27 @@ footer
 	height 60px
 	color Blanco
 	padding 20px
+
+// Responsive
+
+@media screen and (max-width: 480px)
+	.servicio
+		width 100%
+	#menu
+		display none
+	.slider article
+		.contenido
+			width 90%
+		figure
+			display none
+	.contenido1
+		p
+			font-size 1.1em
+	.servicios1 article
+		width 100%
+
+	// titulo
+	.linea
+		width 10%
+	.titulo
+		width 60%

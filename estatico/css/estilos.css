@@ -56,6 +56,8 @@ a:hover {
   vertical-align: top;
   z-index: 2;
   position: relative;
+  height: 45px;
+  overflow: hidden;
 }
 #menu .espacio {
   width: 220px;
@@ -200,20 +202,12 @@ a:hover {
 .servicio img {
   width: 100%;
 }
-@media screen and (max-width: 480px) {
-  .servicio {
-    width: 100%;
-  }
-  #menu {
-    display: none;
-  }
-}
 .contenido1 {
   background: #f7f7f7;
   border-bottom: 1px solid #e1e1e1;
 }
 .contenido1 p {
-  font-size: 1.5em;
+  font-size: 1.4em;
   font-weight: 300;
   margin: 0;
   padding: 20px;
@@ -250,11 +244,19 @@ a:hover {
   width: 33%;
 }
 .servicios1 article img {
-  height: 120px;
-  margin-bottom: 20px;
+  margin-bottom: 10px;
+  width: 100%;
 }
 .servicios1 article h4 {
+  margin: 5px 0;
   font-weight: 700;
+  font-size: 1.3em;
+}
+.servicios1 article h4 a {
+  color: #2583ad;
+}
+.servicios1 article h4 a:hover {
+  color: #d54e21;
 }
 .servicios1 article p {
   font-size: 0.9em;
@@ -263,7 +265,7 @@ a:hover {
   background: #f7f7f7;
   border-radius: 4px;
   border: 1px solid #e1e1e1;
-  font-size: 0.8em;
+  font-size: 0.9em;
   padding: 5px;
   color: #2583ad;
 }
@@ -349,4 +351,30 @@ footer {
   height: 60px;
   color: #fff;
   padding: 20px;
+}
+@media screen and (max-width: 480px) {
+  .servicio {
+    width: 100%;
+  }
+  #menu {
+    display: none;
+  }
+  .slider article .contenido {
+    width: 90%;
+  }
+  .slider article figure {
+    display: none;
+  }
+  .contenido1 p {
+    font-size: 1.1em;
+  }
+  .servicios1 article {
+    width: 100%;
+  }
+  .linea {
+    width: 10%;
+  }
+  .titulo {
+    width: 60%;
+  }
 }

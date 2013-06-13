@@ -1,9 +1,17 @@
-<html>
-<head>
-	<title>Contactanos</title>
-</head>
-<body>
-	<h1>Contactenos</h1>
+{% extends "base.html" %}
+
+{% block tiulos %}
+	Contactenos
+{% endblock tiulos %}
+
+{% block slider %}
+	<section class="slider">
+		<h1>Contactenos</h1>
+	</section>
+{% endblock slider %}
+
+{% block contenido %}
+	
 	<form  method="POST">
 		{% csrf_token %}
 		<div>
@@ -45,37 +53,76 @@
 	{{info.ruc}}	
 	
 	<div>		            					
-		            	<a href="https://github.com/{{info.git}}" target="_blank"><img src="{{STATIC_URL}}img/icn_github.png"></a>
-		            	<a href="https://github.com/{{info.google}}" target="_blank"><img src="{{STATIC_URL}}img/icn_github.png"></a>
-		            	<a href="https://twitter.com/{{equipo.twitter}}" target="_blank"><img src="{{STATIC_URL}}img/icn_twitter.png"></a>
-		            	<a href="http://www.facebook.com/{{equipo.face}}" target="_blank"><img src="{{STATIC_URL}}img/icn_twitter.png"></a>
-		        	</div>
+		<a href="https://github.com/{{info.git}}" target="_blank"><img src="{{STATIC_URL}}img/icn_github.png"></a>
+		<a href="https://github.com/{{info.google}}" target="_blank"><img src="{{STATIC_URL}}img/icn_github.png"></a>
+		<a href="https://twitter.com/{{equipo.twitter}}" target="_blank"><img src="{{STATIC_URL}}img/icn_twitter.png"></a>
+		<a href="http://www.facebook.com/{{equipo.face}}" target="_blank"><img src="{{STATIC_URL}}img/icn_twitter.png"></a>
+	</div>
 
 	</div>
 
-	<div>
-		<iframe width="425" height="350" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" 
-		src="https://maps.google.com.pe/maps?f=q&amp;source=s_q&amp;hl=es-419&amp;geocode=&amp;q=qaysen+Trujillo&amp;aq=&amp;sll=-8.116674,-79.019508&amp;sspn=0.012342,0.021136&amp;t=h&amp;ie=UTF8&amp;hq=qaysen&amp;hnear=Trujillo,+La+Libertad&amp;ll=-8.105911,-79.029129&amp;spn=0.013396,0.006295&amp;output=embed"
-		></iframe><br /><small><a href="https://maps.google.com.pe/maps?f=q&amp;source=embed&amp;hl=es-419&amp;geocode=&amp;q=qaysen+Trujillo&amp;aq=&amp;sll=-8.116674,-79.019508&amp;sspn=0.012342,0.021136&amp;t=h&amp;ie=UTF8&amp;hq=qaysen&amp;hnear=Trujillo,+La+Libertad&amp;ll=-8.105911,-79.029129&amp;spn=0.013396,0.006295" style="color:#0000FF;text-align:left">Ver mapa más grande</a></small>
+	<h1>Mapa</h1>	
+	<div id="map" style="width:100%; height:400px"> </div>  
+	
+{% endblock contenido %}
 
 
-	</div>
-		<p>{{info.mapa}}</p>
+  {% block script %}
+  <script src="http://maps.google.com/maps?file=api&amp;sensor=false&amp;key=ABQIAAAAHhzikxCQyRAS8ryQoB75mRT2yXp_ZAY8_ufC3CFXhHIE1NvwkxQiqBRnE1Iky5sZfKGxzYbUanZ0HA"></script>
 
-	<div id="map" style="width:600px; height:600px">  
-		<script type="text/javascript">inicializar();</script>  
-	</div>  
+	<script>
+	$(document).on("ready", inicio);
+
+	function inicio(){
+			
+			$.ajax({				
+				type: "GET",
+				url: "/ajax/coordenadas/",
+				success: function(data)
+				{
+					inicializar(data.latitud,data.longitud);
+				},
+				 error: function(data)
+				{
+                	console.log(data);
+                }
 
 
-	<script type="text/javascript">  
-  
-		function inicializar() {  
-		  
-		    if (GBrowserIsCompatible()) {  
-		        var map = new GMap2(document.getElementById("map"));  
-		        map.setCenter(new GLatLng(37.4419, -122.1419), 15);  
-		    }  
-		}  
-	</script>  
-</body>
-</html>
+			});
+
+			}
+	
+	function inicializar(latitud, longitud)
+			{
+				
+				if (GBrowserIsCompatible())
+				{
+					var map = new GMap2(document.getElementById("map"));
+					map.setCenter(new GLatLng(latitud,longitud), 17);
+					map.addControl(new GMapTypeControl());
+					map.addControl(new GLargeMapControl());
+					map.addControl(new GScaleControl());
+					map.addControl(new GOverviewMapControl());
+					map.addOverlay(new GMarker(new GLatLng(latitud,longitud)));
+
+					function informacion(ubicacion, descripcion) 
+					{
+
+						var marca = new GMarker(ubicacion);
+						GEvent.addListener(marca, "click", function() {
+						marca.openInfoWindowHtml(descripcion); } );
+						return marca;
+
+					}
+
+					var ubicacion = new GLatLng(latitud,longitud);
+					var descripcion = '<b>Texto ejemplo</b><br/>Qaysen SAC<br />';
+					var marca = informacion(ubicacion, descripcion);
+
+					map.addOverlay(marca);
+
+				}
+			}		
+
+	</script>
+  {% endblock script %}

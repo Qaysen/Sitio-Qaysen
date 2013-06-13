@@ -14,7 +14,7 @@
 		<section class="contenido1">
 			<p>Mira todos los proyectos propios que hemos realizado hasta el momento y los que estamos realizando.</p>
 		</section>
-		{% for i in proyectos %}
+		{% for i in mis_proyectos %}
 			<article class="proyectos {{i.nombre}}">
 				<img src="{{MEDIA_URL}}{{i.imagen}}">
 				<div class="info">

@@ -2,6 +2,7 @@
 #encoding=utf-8
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
+AUTH_USER_MODEL= 'principal.MyUser'
 
 # Importamos Path de unipath(pip install unipath).
 # Luego retrocedemos 2 directorios.
