@@ -1,14 +1,80 @@
-<html>
-<head>
-	<title>Slider</title>
-</head>
-<body>
-	<h1>Slider</h1>
-	{% for slider in slider %}
-		<p>{{slider.titulo}}</p>
-		<p>{{slider.descripcion}}</p>
-		<img src="{{MEDIA_URL}}{{slider.img}}">
-	{% endfor %}
+{% extends "base.html" %}
+
+{% block slider %}
+	<section class="slider">
+		<ul>
+			{% for slider in slider %}
+			<li>
+				<article>
+					<div class="contenido">
+                            <h3>{{slider.titulo}}</h3>
+                            <p>{{slider.descripcion}}</p>
+                    </div>
+                    <figure>
+                        <img src="{{MEDIA_URL}}{{slider.img}}" alt="">
+                    </figure>
+				</article>
+			</li>
+			{% endfor %}
+		</ul>
+	</section>
+{% endblock slider %}
+
+{% block script %}
+		<script>
+            $(document).on('ready', inicio);
+            
+            function inicio()
+            {
+                $(function() {
+                    $('.slider').unslider({
+                        speed: 2000,
+                        delay: 5000,
+                        // keys: true,
+                        dots: true,
+                        fluid: true
+                    });
+                });
+            }
+        </script>
+{% endblock script %}
+
+{% block contenido %}
+
+			<section class="contenido1">
+		<!-- Begin MailChimp Signup Form -->
+<form action="http://gmail.us7.list-manage2.com/subscribe/post?u=9dfe9de0964d99b61edfeeefd&amp;id=ecb454ee3b" method="post" target="_blank">
+	
+	<label for="mce-EMAIL">Email Address </label>
+	<input type="email" name="EMAIL">
+	<input type="submit" value="Subscribe">
+</form>
+
+<!--End mc_embed_signup-->
+	</section>
+
+		<section class="servicios">
+            <div class="titu">
+                <div class="linea"></div>
+                <div class="pre"></div>
+                <div class="titulo"><span>Servicios</span></div>
+                <div class="next"></div>
+                <div class="linea"></div>
+            </div>
+
+            {% for servicio in servicios %}
+			<article class="servicio">
+				<img src='{{MEDIA_URL}}{{servicio.img}}'>
+				<h5>
+					<a href="{{servicio.slug}}">{{servicio.nombre}}</a>
+				</h5>
+	          	<p>{{servicio.descripcion}}</p>
+				<button href="{{servicio.slug}}">Mas información</button>
+			</article>
+			{% endfor %}
+        </section>
+{% endblock contenido %}
+
 
 	<h1>Productos</h1>
 	{% for producto in productos %}
@@ -24,16 +90,6 @@
 		{% endfor %}
 
 	<h1>Servicios</h1>
-	{% for servicio in servicios %}
-			<article>
-				<img src='{{MEDIA_URL}}{{servicio.img}}' style="width:150px;">
-				<h4>
-					<a href="{{servicio.slug}}">{{servicio.nombre}}</a>
-				</h4>
-	          	<p>{{servicio.descripcion}}</p>
-				<button href="{{servicio.slug}}">Mas información</button>
-			</article>
-		{% endfor %}
 
 	
 	{{info.mapa}}

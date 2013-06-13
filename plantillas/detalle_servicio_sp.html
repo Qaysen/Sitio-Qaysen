@@ -1,14 +1,20 @@
-<html>
-<head>
-	<title>Servicios</title>
-</head>
-<body>
+{% extends "base.html" %}
 
-	    <div>
-      		<h1>{{servicio.nombre}}</h1>
-      		<p>Descripcion: {{servicio.descripcion}}</p>
-      		
-      </div>
-      <a href="/contactanos">Contáctenos</a>
-</body>
-</html>
+{% block titulo %}
+	{{servicio.nombre}}
+{% endblock titulo %}
+
+{% block slider %}
+	<section class="slider">
+		<h1>{{servicio.nombre}}</h1>
+	</section>
+{% endblock slider %}
+
+{% block contenido %}
+	<section class="detalle_servicio">
+		<p>"{{servicio.descripcion}}"</p>
+		<img src="{{MEDIA_URL}}{{servicio.img}}" alt="">
+
+		<p>Si quieres contar con nosotros para desarrollar tu proyecto, no dudes en ir a la seccion Contactenos para poder reunirnos.</p>
+	</section>
+{% endblock contenido %}

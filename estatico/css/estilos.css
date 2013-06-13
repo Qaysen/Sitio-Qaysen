@@ -197,6 +197,9 @@ a:hover {
   display: inline-block;
   width: 24%;
 }
+.servicio img {
+  width: 100%;
+}
 @media screen and (max-width: 480px) {
   .servicio {
     width: 100%;
@@ -320,6 +323,25 @@ a:hover {
 .Sisgesa {
   background: #fff;
   border-bottom: #f7f7f7;
+}
+.detalle_servicio {
+  padding: 20px;
+}
+.detalle_producto {
+  padding: 20px;
+}
+.detalle_producto .imagen {
+  width: 69%;
+}
+.detalle_producto .caracteristicas_producto {
+  width: 30%;
+  padding-left: 10%;
+  text-align: left;
+}
+.detalle_producto .imagen,
+.detalle_producto .caracteristicas_producto {
+  display: inline-block;
+  vertical-align: top;
 }
 footer {
   background: #464646;
