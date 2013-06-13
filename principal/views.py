@@ -7,7 +7,7 @@ from django.template import RequestContext
 from principal.forms import ContactoForm, SuscripcionForm
 from random import choice
 from django.core.mail import EmailMultiAlternatives #ENVIAR HTML
-
+from django.utils import simplejson as json
 # Pagina de inicio
 def inicio(request):
 	slider =Slider.objects.all()
@@ -15,9 +15,18 @@ def inicio(request):
 	servicios=Servicio.objects.order_by('?')[:4]
 	return render_to_response('inicio2.html', {'slider':slider,'productos':productos,'servicios':servicios},context_instance=RequestContext(request))
 
+def coordenadas_mapa(request):
+	if request.is_ajax():
+		ubicacion_id=1
+		info=InfContacto.objects.get(pk=ubicacion_id) 
+		data=json.dumps({'latitud':float(info.latitud),'longitud':float(info.longitud)})
+		return HttpResponse(data, mimetype="application/json")
+	else:
+		raise Http404
+
+
 def contacto(request):	
 	info=InfContacto.objects.get(pk=1)
-	print info.mapa		
 	if request.method=='POST':
 		formulario=ContactoForm(request.POST)
 		if formulario.is_valid():
@@ -40,16 +49,18 @@ def nosotros(request):
 
 
 def ver_servicios(request):
-	servicios=Servicio.objects.all().order_by('?')	
+	servicios=Servicio.objects.all().order_by('?')		
 	return render_to_response('servicios.html', {'servicios':servicios},context_instance=RequestContext(request))
 
 def detalleservicio(request, nomservicio):
-	servicio=Servicio.objects.get(slug=nomservicio)
+	servicio=Servicio.objects.get(slug=nomservicio)	
 	if servicio.tipo == "Conplan":
-		planes=Plan.objects.filter(servicio=servicio.id)		
+		planes=Plan.objects.filter(servicio=servicio.id)
 		return render_to_response('detalle_servicio_cp.html',{'servicio':servicio, 'planes':planes},context_instance = RequestContext(request))
 	else:
-		return render_to_response('detalle_servicio_sp.html',{'servicio':servicio},context_instance = RequestContext(request))
+		caracteristicas=ServicioCaract.objects.filter(servicio=servicio.id)
+		print caracteristicas
+		return render_to_response('detalle_servicio_sp.html',{'servicio':servicio,'caracteristicas':caracteristicas},context_instance = RequestContext(request))
 
 
 def ver_productos(request):

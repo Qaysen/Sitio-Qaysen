@@ -9,6 +9,9 @@
       		<p>Descripcion: {{servicio.descripcion}}</p>
       		
       </div>
+      	{% for carac in caracteristica %}
+      		{{carac.caracteristica}}
+      	{% endfor %}
       <a href="/contactanos">Contáctenos</a>
 </body>
 </html>

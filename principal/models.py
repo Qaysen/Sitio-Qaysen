@@ -91,7 +91,8 @@ class Nosotros(models.Model):
 		return self.titulo
 
 class InfContacto(models.Model):	
-	mapa = models.CharField(max_length=1000)
+	latitud =models.DecimalField(max_digits=20, decimal_places=15)
+	longitud =models.DecimalField(max_digits=20, decimal_places=15)
 	e_mail = models.EmailField(max_length=20)	
 	direccion= models.CharField(null=True,blank=True,max_length=300)
 	telefono= models.CharField(null=True,blank=True,max_length=10)
@@ -142,10 +143,10 @@ TIPO = (
 	('Sinplan','Sinplan')
 )
 
+
 class Servicio(models.Model):
 	nombre = models.CharField(max_length=100)
 	descripcion = models.CharField(max_length=500)
-	caracteristicas= models.CharField(max_length=1000)  
 	img=models.FileField(upload_to='imgServicios/')
 	slug = models.SlugField(max_length=100)
 	tipo = models.CharField(choices=TIPO,max_length=30)
@@ -157,21 +158,34 @@ class Servicio(models.Model):
 	def __unicode__(self):
 		return '%s/%s' %(self.nombre, self.tipo)
 
+class ServicioCaract(models.Model):
+	caracteristica = models.CharField(max_length=1000)
+	servicio=models.ForeignKey(Servicio)
+
+	def __unicode__(self):
+		return self.caracteristica
+
 class Plan(models.Model):
 	servicio = models.ForeignKey(Servicio)
 	nombre = models.CharField(max_length=100)
 	precio = models.DecimalField(max_digits=10, decimal_places=2) 
-	caracteristicas= models.CharField(max_length=1000)  
 	
 	def __unicode__(self):
 		return self.nombre
 
+class PlanCaract(models.Model):
+	caracteristica = models.CharField(max_length=1000)
+	plan=models.ForeignKey(Plan)
+
+	def __unicode__(self):
+		return self.caracteristica
 
 class Proyecto(models.Model):
 	nombre = models.CharField(max_length=100)
 	descripcion = models.CharField(max_length=500)	
 	slug = models.SlugField(max_length=100)
-
+	link = models.URLField(max_length=500)
+	
 	def save(self, *args, **kwargs):
 		self.slug = defaultfilters.slugify(self.nombre)
 		super(Proyecto, self).save(*args, **kwargs)

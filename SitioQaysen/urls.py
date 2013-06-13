@@ -23,5 +23,6 @@ urlpatterns = patterns('',
     url(r'^proyectos/$','principal.views.proyecto'),
     url(r'^suscripcion/$','principal.views.suscripcion'),
     url(r'^suscripcion/salir/(?P<codigo>[\w]+)/$','principal.views.salir_suscripcion'),
+    url(r'^ajax/coordenadas/$','principal.views.coordenadas_mapa')
 
    )
